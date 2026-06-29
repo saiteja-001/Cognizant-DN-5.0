@@ -1,0 +1,8 @@
+# Ignore compiled class files
+**/*.class
+
+# Ignore bin directories containing build outputs
+**/bin/
+
+# Ignore local AI agent environment directories
+.gemini/
