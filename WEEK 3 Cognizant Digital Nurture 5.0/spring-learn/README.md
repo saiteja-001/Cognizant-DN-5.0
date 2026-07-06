@@ -117,3 +117,66 @@ Includes a zero-parameter constructor, getters, setters, and `toString()` with `
 2. **Instantiation & Configuration (if lazy or prototype)**: If the bean is not yet instantiated (or is prototype-scoped), Spring instantiates the bean using the default constructor, injects properties via setter methods, and processes lifecycle callbacks.
 3. **Type Checking & Return**: Spring casts the bean to the requested class (`Country.class`) and returns the fully configured instance.
 
+---
+
+## 5. Hello World RESTful Web Service
+
+We created a simple RESTful web service returning `"Hello World!!"`.
+
+### Endpoint Configuration
+* **Controller Class**: `com.cognizant.springlearn.controller.HelloController`
+* **Method**: `GET`
+* **URL**: `http://localhost:8083/hello`
+
+### Implementation (`HelloController.java`)
+```java
+package com.cognizant.springlearn.controller;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class HelloController {
+    private static final Logger logger = LoggerFactory.getLogger(HelloController.class);
+
+    @GetMapping("/hello")
+    public String sayHello() {
+        logger.info("[REST] HelloController.sayHello() execution started.");
+        String response = "Hello World!!";
+        logger.info("[REST] HelloController.sayHello() execution finished. Returning: {}", response);
+        return response;
+    }
+}
+```
+
+---
+
+## SME Walkthrough: Understanding HTTP Headers
+
+An HTTP exchange consists of request headers sent by the client and response headers returned by the server.
+
+### 1. Viewing Headers in Chrome Developer Tools
+1. Open Chrome and press **F12** (or right-click and choose **Inspect**) to open Developer Tools.
+2. Select the **Network** tab.
+3. Navigate to `http://localhost:8083/hello`.
+4. Click on the `hello` request in the Name list.
+5. In the right panel, select the **Headers** tab. Here you will see:
+   * **General**: Request URL, Request Method (`GET`), Status Code (`200 OK`), Remote Address.
+   * **Response Headers**:
+     * `Content-Type`: `text/plain;charset=UTF-8` (specifies the return mime-type and character encoding).
+     * `Content-Length`: `13` (exact size of `"Hello World!!"` in bytes).
+     * `Keep-Alive`: `timeout=60` (tells the client that the connection remains open for subsequent requests).
+     * `Connection`: `keep-alive`.
+     * `Date`: Server timestamp when the response was generated.
+   * **Request Headers**: User-Agent, Accept language, cookies, cache policies, etc.
+
+### 2. Viewing Headers in Postman
+1. Open Postman and create a new request tab.
+2. Select HTTP Method as `GET` and type the URL `http://localhost:8083/hello`.
+3. Click the **Send** button.
+4. Below the request settings, look at the Response panel.
+5. Click on the **Headers** tab to view key-value pairs representing the response headers (such as `Content-Type`, `Content-Length`, `Date`, and `Keep-Alive`).
+
+
