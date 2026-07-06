@@ -7,5 +7,8 @@
 # Ignore target directories containing Maven build outputs
 **/target/
 
+# Ignore local maven_home binary directory
+**/maven_home/
+
 # Ignore local AI agent environment directories
 .gemini/
