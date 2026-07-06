@@ -179,4 +179,67 @@ An HTTP exchange consists of request headers sent by the client and response hea
 4. Below the request settings, look at the Response panel.
 5. Click on the **Headers** tab to view key-value pairs representing the response headers (such as `Content-Type`, `Content-Length`, `Date`, and `Keep-Alive`).
 
+---
+
+## 6. REST Country Web Service
+
+We created a REST service mapping `/country` to return details of country India.
+
+### Endpoint Configuration
+* **Controller Class**: `com.cognizant.springlearn.controller.CountryController`
+* **Method**: `GET` (via `@RequestMapping`)
+* **URL**: `http://localhost:8083/country`
+
+### Implementation (`CountryController.java`)
+```java
+package com.cognizant.springlearn.controller;
+
+import com.cognizant.springlearn.Country;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class CountryController {
+    private static final Logger logger = LoggerFactory.getLogger(CountryController.class);
+
+    @RequestMapping(value = "/country", method = RequestMethod.GET)
+    public Country getCountryIndia() {
+        logger.info("[REST] CountryController.getCountryIndia() execution started.");
+        
+        ApplicationContext context = new ClassPathXmlApplicationContext("country.xml");
+        Country country = context.getBean("country", Country.class);
+        
+        logger.info("[REST] CountryController.getCountryIndia() execution finished. Returning: {}", country);
+        return country;
+    }
+}
+```
+
+---
+
+## SME Walkthrough: REST Response Serialization & Headers
+
+### 1. What Happens in the Controller Method?
+1. The request hits `GET /country`.
+2. The controller instantiates `ClassPathXmlApplicationContext("country.xml")`.
+3. This XML parse triggers the instantiation of `Country` (invoking the default constructor) and sets the `code` and `name` properties (invoking setters).
+4. The method finishes and returns the populated `Country` instance object to the Spring MVC framework.
+
+### 2. How the Bean is Converted to a JSON Response
+* Spring MVC uses **Jackson JSON Processor** (`MappingJackson2HttpMessageConverter`) because `spring-boot-starter-web` places Jackson on the classpath.
+* Since the controller is marked with `@RestController` (inheriting `@ResponseBody`), the framework intercepts the returned Java object.
+* It invokes the object's getter methods (`getCode()` and `getName()`) to read values, dynamically generates the JSON structure `{"code":"IN","name":"India"}`, and writes it directly to the HTTP response stream.
+
+### 3. Header Analysis (Chrome Developer Tools & Postman)
+When querying `http://localhost:8083/country`, the following key headers are observed:
+* **`Content-Type`**: `application/json` (automatically set by Spring's Jackson converter to tell the client the payload is formatted as JSON).
+* **`Transfer-Encoding`**: `chunked` (signifies the body is streamed in chunks rather than calculating a static Content-Length).
+* **`Keep-Alive`**: `timeout=60` & **`Connection`**: `keep-alive` (standard HTTP keep-alive policy).
+
+
 
