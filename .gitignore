@@ -4,5 +4,8 @@
 # Ignore bin directories containing build outputs
 **/bin/
 
+# Ignore target directories containing Maven build outputs
+**/target/
+
 # Ignore local AI agent environment directories
 .gemini/
