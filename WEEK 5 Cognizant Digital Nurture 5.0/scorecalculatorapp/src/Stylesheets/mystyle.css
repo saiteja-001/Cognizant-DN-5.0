@@ -1,0 +1,25 @@
+.formatstyle {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  border: 2px solid #4a90e2;
+  padding: 20px;
+  margin: 20px auto;
+  background-color: #f4f7f6;
+  border-radius: 10px;
+  max-width: 400px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.formatstyle h2 {
+  color: #4a90e2;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.formatstyle p {
+  font-size: 16px;
+  color: #333;
+  line-height: 1.6;
+  margin: 10px 0;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 5px;
+}
