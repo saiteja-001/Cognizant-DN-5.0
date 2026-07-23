@@ -1,0 +1,17 @@
+angular.json: Workspace-wide CLI configuration file for Angular, containing build, serve, test, and styling options.
+tsconfig.json: Root TypeScript compiler configuration containing global compiler settings inherited by other tsconfig files.
+tsconfig.app.json: Application-specific TypeScript compiler configuration, defining options and paths for compiling the application code.
+package.json: Project metadata file listing dependencies, devDependencies, and scripts for building/running the application.
+src/main.ts: The main entry point of the application, responsible for bootstrapping the root configuration and components.
+src/app/app.config.ts: Configuration file for the root application in standalone mode, declaring app-wide providers (like routing).
+src/app/app.ts (app.component.ts): The root component of the application, defining the root selector, template, and styles.
+src/index.html: The main HTML document that serves as the entry page, rendering the root Angular component.
+
+Budgets configuration (maximumWarning / maximumError thresholds):
+These thresholds control bundle size limits to prevent performance regression.
+- type "initial" defines limits for the initial JS bundle size loaded on startup; "maximumWarning" (500kB) prints a warning during build if exceeded, and "maximumError" (1MB) halts the build with a failure if exceeded.
+- type "anyComponentStyle" defines limits for the styling (CSS) of any individual component; "maximumWarning" (4kB) prints a warning if exceeded, and "maximumError" (8kB) halts the build if exceeded.
+
+Compiled application code location:
+- The compiled application code is stored in the 'main-*.js' file (for example: 'main-DJOIHOYL.js') under the 'dist/student-course-portal/browser/' directory.
+

@@ -1,0 +1,16 @@
+<div class="courses-container">
+  <h2>Available Courses</h2>
+
+  <div class="course-grid">
+    <app-course-card 
+      *ngFor="let c of courses" 
+      [course]="c" 
+      [isEnrolled]="selectedCourseId === c.id"
+      (enrollRequested)="onEnroll($event)">
+    </app-course-card>
+  </div>
+
+  <div class="selection-status" *ngIf="selectedCourseId">
+    <p>Selected course ID: <strong>{{ selectedCourseId }}</strong></p>
+  </div>
+</div>

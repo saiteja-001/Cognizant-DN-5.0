@@ -1,0 +1,180 @@
+.card-container {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e2e8f0;
+  border-left: 6px solid #cbd5e1; /* Default left border style, color set by ngStyle */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 220px;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+              box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              min-height 0.3s ease;
+}
+
+.card-container:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.08);
+}
+
+/* card--enrolled state */
+.card-container.card--enrolled {
+  background-color: #f0fdf4;
+  border-color: #bbf7d0;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.08);
+}
+
+/* card--full state */
+.card-container.card--full {
+  background-color: #fffbeb;
+  border-color: #fde68a;
+}
+
+/* expanded state styles */
+.card-container.expanded {
+  min-height: 360px;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.course-code {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #3b82f6;
+  background-color: #eff6ff;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  text-transform: uppercase;
+}
+
+/* Grade Status Badges */
+.status-badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.25rem 0.6rem;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.status--passed {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+.status--failed {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+.status--pending {
+  background-color: #f1f5f9;
+  color: #475569;
+}
+
+.card-body {
+  flex-grow: 1;
+  margin-bottom: 1.5rem;
+}
+
+.course-title {
+  font-size: 1.25rem;
+  color: #1e293b;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.course-credits {
+  font-size: 0.95rem;
+  color: #64748b;
+  margin-bottom: 0.5rem;
+}
+
+/* Details Section Styling */
+.details-content {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e2e8f0;
+  animation: fadeIn 0.3s ease;
+}
+
+.course-desc {
+  font-size: 0.9rem;
+  color: #475569;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+.course-meta {
+  display: flex;
+  gap: 1.5rem;
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card-footer {
+  display: flex;
+  gap: 1rem;
+  margin-top: auto;
+}
+
+.details-btn {
+  flex: 1;
+  background-color: #ffffff;
+  color: #475569;
+  border: 1px solid #cbd5e1;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.details-btn:hover {
+  background-color: #f8fafc;
+  border-color: #94a3b8;
+  color: #1e293b;
+}
+
+.enroll-btn {
+  flex: 1.2;
+  background-color: #3b82f6;
+  color: #ffffff;
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.enroll-btn:hover:not(:disabled) {
+  background-color: #2563eb;
+}
+
+.enroll-btn:disabled {
+  background-color: #d1fae5;
+  color: #065f46;
+  border: 1px solid #a7f3d0;
+  cursor: not-allowed;
+}
