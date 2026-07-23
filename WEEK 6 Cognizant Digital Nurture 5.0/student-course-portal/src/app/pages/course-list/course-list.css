@@ -35,3 +35,42 @@
   color: #15803d;
   font-size: 1.15rem;
 }
+
+/* Loading Spinner styling */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 5rem 0;
+  gap: 1.5rem;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid #cbd5e1;
+  border-top-color: #3b82f6;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* No Courses Styling */
+.no-courses-container {
+  background-color: #f8fafc;
+  border: 2px dashed #cbd5e1;
+  border-radius: 12px;
+  padding: 4rem 2rem;
+  text-align: center;
+  color: #64748b;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
