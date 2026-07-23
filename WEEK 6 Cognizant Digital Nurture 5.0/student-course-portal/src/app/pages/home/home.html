@@ -1,10 +1,23 @@
 <div class="home-container">
   <header class="home-header">
-    <h1>Welcome to your Student Course Portal</h1>
+    <h1>Welcome to {{ portalName }}</h1>
     <p class="description">
       Manage your academic journey, track your course enrollments, monitor your grades, and explore new learning opportunities all in one place.
     </p>
   </header>
+
+  <div class="action-panel">
+    <div class="enrollment-section">
+      <button class="enroll-btn" [disabled]="!isPortalActive" (click)="onEnrollClick()">Enroll Now</button>
+      <p class="enroll-message" *ngIf="message">{{ message }}</p>
+    </div>
+
+    <div class="search-section">
+      <label for="search-input" class="search-label">Search Catalog</label>
+      <input id="search-input" [(ngModel)]="searchTerm" class="search-input" placeholder="Type course name...">
+      <p class="search-preview" *ngIf="searchTerm">Searching for: <strong>{{ searchTerm }}</strong></p>
+    </div>
+  </div>
 
   <div class="stats-row">
     <div class="stat-card">

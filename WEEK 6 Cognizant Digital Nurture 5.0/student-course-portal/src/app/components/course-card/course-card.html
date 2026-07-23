@@ -1,0 +1,15 @@
+@if (course) {
+  <div class="card-container">
+    <div class="card-header">
+      <span class="course-code">{{ course.code }}</span>
+      <span class="course-id">ID: {{ course.id }}</span>
+    </div>
+    <div class="card-body">
+      <h3 class="course-title">{{ course.name }}</h3>
+      <p class="course-credits">Credits: <strong>{{ course.credits }}</strong></p>
+    </div>
+    <div class="card-footer">
+      <button class="enroll-btn" (click)="enrollRequested.emit(course.id)">Enroll</button>
+    </div>
+  </div>
+}
