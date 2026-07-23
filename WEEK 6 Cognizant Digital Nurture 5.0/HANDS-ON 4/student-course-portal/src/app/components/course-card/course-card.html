@@ -1,0 +1,32 @@
+<div class="card-container" [ngClass]="cardClasses" [ngStyle]="{ 'border-left-color': getBorderColor() }" *ngIf="course">
+  <div class="card-header">
+    <span class="course-code">{{ course.code }}</span>
+    <div [ngSwitch]="course.gradeStatus">
+      <span *ngSwitchCase="'passed'" class="status-badge status--passed">Passed</span>
+      <span *ngSwitchCase="'failed'" class="status-badge status--failed">Failed</span>
+      <span *ngSwitchCase="'pending'" class="status-badge status--pending">Pending</span>
+    </div>
+  </div>
+  
+  <div class="card-body">
+    <h3 class="course-title">{{ course.name }}</h3>
+    <p class="course-credits">Credits: <strong>{{ course.credits | creditLabel }}</strong></p>
+    
+    <div class="details-content" *ngIf="isExpanded">
+      <p class="course-desc">This is an in-depth course focused on modern architecture, hands-on labs, and real-world project deployments.</p>
+      <div class="course-meta">
+        <div><strong>Format:</strong> Online/Hybrid</div>
+        <div><strong>Duration:</strong> 12 Weeks</div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="card-footer">
+    <button class="details-btn" (click)="toggleDetails()">
+      {{ isExpanded ? 'Hide Details' : 'Show Details' }}
+    </button>
+    <button class="enroll-btn" (click)="enrollRequested.emit(course.id)" [disabled]="isEnrolled">
+      {{ isEnrolled ? 'Enrolled' : 'Enroll' }}
+    </button>
+  </div>
+</div>
